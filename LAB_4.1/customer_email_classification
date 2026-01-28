@@ -1,0 +1,60 @@
+#Customer Email Classification
+
+
+#Task 1
+# Prepare five short sample emails, each belonging to one of the above categories. by following below information Customer Email Classification A company receives a large number of customer emails every day and wants to automatically classify them into the following categories: • Billing • Technical Support • Feedback • Others, give in tabular foramt
+""""| Email ID | Email Content                                                                                     | Category          |
+|----------|--------------------------------------------------------------------------------------------------|-------------------|     
+| 1        | I have a question about my latest invoice. Can you please explain the charges?                  | Billing           |
+| 2        | My internet connection has been dropping frequently. Can you help me fix this issue?               | Technical Support |
+| 3        | I love the new features in your latest update! Keep up the great work.                          | Feedback          |
+| 4        | I would like to know more about your product offerings.                                          | Others            |
+| 5        | There seems to be an error when I try to log into my account. Can you assist me with this?                  | Technical Support |"""
+
+
+
+
+#Task 2
+# from above table classify a given email into one of the categories and give with headline, output and observation give in text format
+"""Headline: Email Classification Result
+Output: Technical Support
+Observation: The email content indicates that the customer is experiencing issues with logging into their account, which falls under the category of Technical Support."""
+
+
+
+#Task 3
+#taking this Example: Headline: “customers wants new things in the platform” Category: Feedback. Now classify the following headline into one of the categories and give output and observation in text format
+"""Headline: "I need help with setting up my new device"
+Output: Technical Support 
+Observation: The headline indicates that the customer requires assistance with the setup of a new device, which is a technical issue and thus falls under the Technical Support category."""
+
+
+
+#Task 4
+# Take sample email examples like this  Email 1:Headline: "There is a discrepancy in my latest bill"Output: Billing Observation: The headline suggests that the customer has concerns regarding their billing statement, which places it in the Billing category.
+#Email 2: Headline: "Great job on the recent update!" Output: Feedback Observation: The headline expresses positive feedback about a recent update, indicating that it belongs to the Feedback category.
+"""Email 1:
+Headline: "My internet speed is much slower than advertised"
+Output: Technical Support
+Observation: The headline indicates that the customer is experiencing issues with their internet speed, which is a technical problem and thus falls under the Technical Support category.
+Email 2:
+Headline: "I would like to suggest a new feature for your app"
+Output: Feedback
+Observation: The headline shows that the customer is providing a suggestion for improvement, which is a form of feedback and therefore belongs to the Feedback category.
+"""
+
+
+#Task 5
+#Compare the outputs obtained using zero-shot, one-shot, and few-shot prompting techniques from task 2 ,3 4 and briefly comment on their effectiveness
+"""In Task 2, zero-shot prompting was used to classify the email without any prior examples. The output was accurate, demonstrating that 
+the model can effectively understand and classify emails based on their content alone.
+
+In Task 3, one-shot prompting was employed by providing a single example before classifying the new headline. This approach also yielded a 
+correct classification, indicating that even a single example can help guide the model's understanding of the task.
+
+In Task 4, few-shot prompting was utilized by providing multiple examples before classifying the new headlines. This method proved to be 
+the most effective, as the model had more context and examples to learn from, resulting in accurate classifications for both emails.
+
+Overall, while all three prompting techniques were effective in this scenario, few-shot prompting provided the most context and examples, 
+leading to the highest accuracy in classification. Zero-shot and one-shot prompting were also successful, but they may not always perform as 
+well in more complex classification tasks."""
