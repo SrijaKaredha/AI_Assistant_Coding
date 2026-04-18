@@ -1,0 +1,122 @@
+#TASK-1
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import LabelEncoder
+
+# Create a synthetic employee dataset for demonstration
+data = {
+    'employee_id': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 11],
+    'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy', 'Bob', 'Kelly'],
+    'designation': ['Software Engineer', 'Project Manager', 'Data Scientist', 'Software Engineer', 'HR Manager', 'Project Manager', 'Software Engineer', 'Data Scientist', 'HR Manager', 'Software Engineer', 'Project Manager', 'Junior Software Engineer'],
+    'employment_type': ['Full-time', 'Contract', 'Full-time', 'Full-time', 'Part-time', 'Full-time', 'Full-time', 'Contract', 'Full-time', 'Full-time', 'Contract', 'Full-time'],
+    'salary': [70000, 90000, 85000, 72000, 60000, 92000, 71000, 86000, 62000, 73000, np.nan, 65000],
+    'experience': [3, 7, 5, 4, 2, 8, 3, 6, 2, 4, 7, np.nan],
+    'department': ['Engineering', 'Management', 'Data Science', 'Engineering', 'HR', 'Management', 'Engineering', 'Data Science', 'HR', 'Engineering', 'Management', 'Engineering']
+}
+df = pd.DataFrame(data)
+
+# Introduce some missing values intentionally for demonstration
+df.loc[0, 'salary'] = np.nan
+df.loc[4, 'designation'] = np.nan
+
+print("Original DataFrame:")
+display(df)
+print("\nDataFrame Info:")
+df.info()
+
+#TASK-2
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+
+# Create a synthetic student performance dataset
+data = {
+    'student_id': range(1, 21),
+    'exam_date': pd.to_datetime(['2023-01-15', '2023-03-22', '2023-05-10', '2023-07-01', '2023-09-18',
+                                '2023-11-05', '2023-02-28', '2023-04-12', '2023-06-30', '2023-08-01',
+                                '2023-10-20', '2023-12-01', '2023-01-20', '2023-03-10', '2023-05-25',
+                                '2023-07-15', '2023-09-01', '2023-11-11', '2023-02-01', '2023-04-05']),
+    'course': ['Math', 'Science', 'History', 'Math', 'Science',
+               'History', 'Math', 'Science', 'History', 'Math',
+               'Science', 'History', 'Math', 'Science', 'History',
+               'Math', 'Science', 'History', 'Math', 'Science'],
+    'total_marks': [85, 72, 91, 68, 79,
+                    88, 75, 62, 95, 70,
+                    83, 78, 60, 92, 71,
+                    80, 89, 65, 77, 90]
+}
+df_students = pd.DataFrame(data)
+
+# Introduce some potential outliers in total_marks
+df_students.loc[2, 'total_marks'] = 105  # High outlier
+df_students.loc[18, 'total_marks'] = 20   # Low outlier
+
+print("Original Student Performance DataFrame:")
+display(df_students)
+df_students.info()
+
+#TASK-3
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.model_selection import train_test_split
+
+# Create a synthetic student health dataset
+data = {
+    'student_id': range(1, 21),
+    'age': [15, 16, 15, 17, 16, 15, 17, 16, 15, 17, 16, 15, 17, 16, 15, 17, 16, 15, 17, 16],
+    'height_cm': [160, 175, 162, 180, 168, 165, 170, 172, 163, 178, 169, 161, 176, 171, 164, 179, 173, 166, 181, 174],
+    'weight_kg': [55, 70, 58, 75, 62, 60, 68, 70, 56, 73, 65, 57, 72, 69, 59, 76, 71, 61, 78, 74],
+    'medical_condition': ['None', 'Asthma', 'Allergy', 'None', 'None', 'Asthma', 'None', 'Allergy', 'None', 'None', 'Asthma', 'None', 'None', 'Allergy', 'None', 'None', 'Asthma', 'None', 'None', 'Allergy'],
+    'fitness_status': ['Good', 'Excellent', 'Average', 'Excellent', 'Good', 'Average', 'Excellent', 'Good', 'Average', 'Excellent', 'Good', 'Average', 'Excellent', 'Good', 'Average', 'Excellent', 'Good', 'Average', 'Excellent', 'Good']
+}
+df_health = pd.DataFrame(data)
+
+# Introduce some missing values intentionally
+df_health.loc[0, 'height_cm'] = np.nan
+df_health.loc[4, 'weight_kg'] = np.nan
+df_health.loc[8, 'medical_condition'] = np.nan
+df_health.loc[12, 'fitness_status'] = np.nan
+
+# Calculate BMI (Body Mass Index) - weight (kg) / (height (m))^2
+df_health['bmi'] = df_health['weight_kg'] / ((df_health['height_cm'] / 100)**2)
+
+# Introduce a missing BMI intentionally
+df_health.loc[1, 'bmi'] = np.nan
+
+print("Original Student Health DataFrame:")
+display(df_health)
+df_health.info()
+
+#TASK-4
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+
+# Create a synthetic ride-sharing trip dataset
+data = {
+    'ride_id': [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 103, 111, 112],
+    'driver_id': [1, 2, 3, 1, 4, 2, 5, 3, 4, 1, 3, 6, 5],
+    'pickup_location': ['Downtown', 'Airport', 'Suburb_A', 'Downtown ', 'Suburb_B', 'Airport', 'Downtown', 'Suburb_A', 'Suburb_B ', 'Downtown', 'Suburb_A', 'Airport', 'Downtown'],
+    'dropoff_location': ['Suburb_C', 'Downtown', 'City Center', 'Suburb_C ', 'Airport', 'City Center', 'Suburb_D', 'City Center ', 'Airport', 'Suburb_C', 'City Center', 'Suburb_E', 'Airport'],
+    'fare_amount': [25.50, 45.00, 18.75, 26.00, np.nan, 42.50, 30.00, 19.50, 38.00, 27.00, 18.75, np.nan, 35.00],
+    'distance_km': [10.2, 25.1, 7.8, 11.5, 18.0, 22.0, 13.0, 8.5, 16.5, 10.8, 7.8, 20.0, 14.5],
+    'driver_rating': [4.8, 4.2, 5.0, 4.9, 3.5, 4.1, np.nan, 4.7, 3.9, 4.6, 5.0, 4.3, 4.0],
+    'ride_timestamp': pd.to_datetime(['2023-10-26 08:30:00', '2023-10-26 09:15:00', '2023-10-26 10:00:00', '2023-10-26 08:45:00', '2023-10-26 11:30:00',
+                                      '2023-10-26 09:30:00', '2023-10-26 12:00:00', '2023-10-26 10:30:00', '2023-10-26 11:45:00', '2023-10-26 08:50:00',
+                                      '2023-10-26 10:00:00', '2023-10-26 13:00:00', '2023-10-26 12:15:00'])
+}
+df_rides = pd.DataFrame(data)
+
+# Introduce some additional missing values and inconsistencies for demonstration
+df_rides.loc[4, 'driver_rating'] = np.nan
+df_rides.loc[6, 'fare_amount'] = np.nan
+df_rides.loc[10, 'pickup_location'] = 'suburb_A'
+
+print("Original Ride-Sharing DataFrame:")
+display(df_rides)
+df_rides.info()
+
+     
+
+     
